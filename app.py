@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from source.transcribe import transcribe_youtube_audio, transcribe_mp3_audio
 from wordcloud import WordCloud
 import re
-import io
+import json
 from collections import Counter
 
 app = Flask(__name__)
@@ -54,38 +54,26 @@ def transcribe():
         return jsonify({'error': str(e)}), 500
 
 # Wordcloud
-@app.route('/wordcloud', methods=['GET'])
-def wordcloud():
+@app.route('/wordcloud', methods=['POST'])
+def generate_wordcloud():
     try:
-       # Request the url link that pass from the backend
-        # url = request.args.get('url')
-        
-        # For Test URL from BUCKET
-        # url = 'https://storage.googleapis.com/files-bucket-24pdinsight/gibran.mp3'
-        
-        # For Test URL from YOUTUBE
-        url = 'https://youtu.be/OdptPKaEMFQ?si=nf8e1Jyq9bBLfpL7'
-        
-        if not url:
-            return jsonify({'error': 'No URL provided'}), 400
-        
-        if youtube_regex.match(url):
-            # Transcribe audio from YouTube URL
-            transcription = transcribe_youtube_audio(url)
-        elif mp3_regex.match(url):
-            # Transcribe audio from MP3 URL
-            transcription = transcribe_mp3_audio(url)
-        else:
-            return jsonify({'error': 'Invalid URL format'}), 400
-        
+        data = request.get_json()
+        transcription = data.get('transcription')
+
+        if not transcription:
+            return jsonify({'error': 'No transcription provided'}), 400
+
         # Generate word frequencies
         wordcloud = WordCloud().process_text(transcription)
         
         # Convert to desired format with word key before size key
         wordcloud_data = [{'word': word, 'size': str(frequency)} for word, frequency in wordcloud.items()]
 
+        # Convert the list of dictionaries to JSON string
+        wordcloud_json = json.dumps({'wordcloud': wordcloud_data}, sort_keys=False)
+
         # Return the word cloud data as JSON
-        return jsonify({'wordcloud': wordcloud_data})
+        return wordcloud_json
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

@@ -1,28 +1,40 @@
-from flask import Flask, request, jsonify
-from source.transcribe import transcribe_youtube_audio
+from flask import Flask, jsonify
+from pytube import YouTube
+from transformers import pipeline
+import os
 
 app = Flask(__name__)
 
-# Index route
-@app.route('/', methods=['GET'])
-def index():
-    return 'Welcome to the transcription service!'
+# Initialize the ASR pipeline once to avoid reloading the model on every request
+whisper = pipeline('automatic-speech-recognition', model='openai/whisper-medium')
+
+def transcribe_youtube_audio(youtube_url):
+    try:
+        # Download the audio stream from YouTube
+        yt = YouTube(youtube_url)
+        audio_stream = yt.streams.filter(only_audio=True).first()
+        
+        # Download the audio stream to a temporary file
+        temp_path = './temp_audio.mp4'
+        audio_stream.download(output_path=os.path.dirname(temp_path), filename=os.path.basename(temp_path))
+        
+        # Perform transcription on the downloaded audio file
+        transcription = whisper(temp_path)
+        
+        # Clean up the temporary file
+        os.remove(temp_path)
+        
+        # Return the transcription text
+        return transcription['text']
+    
+    except Exception as e:
+        raise RuntimeError(f"Error during transcription: {str(e)}")
 
 @app.route('/transcribe', methods=['GET'])
 def transcribe():
     try:
-        # Get the YouTube URL from the query parameters
-        # youtube_url = request.args.get('url')
-        
-        # Test
-        youtube_url = 'https://youtu.be/OdptPKaEMFQ?si=YLhFMkzW_lukpiWC'
-        
-        # # Check if youtube_url is None
-        # if youtube_url is None:
-        #     # Use a default YouTube URL if none provided
-        #     youtube_url = 'https://youtu.be/OdptPKaEMFQ'
-        
-        # Call the transcription function
+        # Call the transcription function with the provided YouTube URL
+        youtube_url = 'https://youtu.be/OdptPKaEMFQ'
         transcription = transcribe_youtube_audio(youtube_url)
         
         # Return the transcription result

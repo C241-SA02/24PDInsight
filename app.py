@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
 from source.transcribe import transcribe_youtube_audio, transcribe_mp3_audio
-from wordcloud import WordCloud
+from source.wordcloud import wordcloud
 import re
-import json
-from collections import Counter
 
 app = Flask(__name__)
 
@@ -63,18 +61,10 @@ def generate_wordcloud():
         if not transcription:
             return jsonify({'error': 'No transcription provided'}), 400
 
-        # Generate word frequencies
-        wordcloud = WordCloud().process_text(transcription)
-        
-        # Convert to desired format with word key before size key
-        wordcloud_data = [{'word': word, 'size': str(frequency)} for word, frequency in wordcloud.items()]
+        wordcloud_json = wordcloud(transcription)
 
-        # Convert the list of dictionaries to JSON string
-        wordcloud_json = json.dumps({'wordcloud': wordcloud_data}, sort_keys=False)
-
-        # Return the word cloud data as JSON
         return wordcloud_json
-
+    
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

@@ -6,7 +6,7 @@ Welcome to 24PDInsight, a capstone project developed by *Bangkit Cohort 2024 Bat
 ## Features
 - [x] **Transcribe Audio to Text:** Utilize Whisper from OpenAI to transcribe audio files to text.
 - [x] **Wordcloud Generation:** Calculate the frequency of words in the text data and pass it to the frontend for generating wordcloud visualizations.
-- [ ] **Sentiment Analysis:** Analyze the sentiment of text data to determine the overall sentiment (positive, negative, or neutral).
+- [x] **Sentiment Analysis:** Analyze the sentiment of text data to determine the overall sentiment (positive, negative, or neutral).
 - [ ] **Topic Modeling:** Identify topics in text data and analyze their distribution.
 - [ ] **Named Entity Recognition (NER):** Identify and classify named entities (e.g., persons, organizations, locations) in text data.
 - [ ] **Text Summarization:** Automatically generate concise summaries of text documents.

@@ -21,7 +21,7 @@ def index():
     return "Homepage"
 
 # Transcribe
-@app.route('/transcribe', methods=['GET'])
+@app.route('/transcribe', methods=['POST'])
 def transcribe():
     try:
         # Request the url link that pass from the backend

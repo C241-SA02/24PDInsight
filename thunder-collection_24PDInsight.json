@@ -1,0 +1,104 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "24PDInsight",
+    "collectionId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
+    "dateExported": "2024-05-29T08:00:09.940Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "480e5085-b688-4956-80a8-54230a03cd45",
+            "colId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
+            "containerId": "",
+            "name": "Get Transcribe",
+            "url": "http://127.0.0.1:5000/transcribe",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-28T20:00:36.583Z",
+            "modified": "2024-05-29T06:07:57.214Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [
+                {
+                    "name": "url",
+                    "value": "https://storage.googleapis.com/files-bucket-24pdinsight/gibran.mp3",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "url",
+                    "value": "https://youtu.be/OdptPKaEMFQ?si=nf8e1Jyq9bBLfpL7",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"url\":\"https://storage.googleapis.com/files-bucket-24pdinsight/gibran.mp3\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "37143aef-7cf2-452c-ae9b-d246cb30e029",
+            "colId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
+            "containerId": "",
+            "name": "Get Wordcloud",
+            "url": "http://127.0.0.1:5000/wordcloud",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-05-28T20:46:58.842Z",
+            "modified": "2024-05-28T20:46:58.842Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"transcription\": \" Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka labor. Tapi Bapak-Ibu yang saya hormati, Teman-teman sesama anak muda, Ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia Umas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandingan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f1715b95-95c0-4cf0-9e39-ac1771f87ceb",
+            "colId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
+            "containerId": "",
+            "name": "Get Sentiment",
+            "url": "http://127.0.0.1:5000/sentiment",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-05-29T07:56:26.607Z",
+            "modified": "2024-05-29T07:56:26.607Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"transcription\": \" Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka labor. Tapi Bapak-Ibu yang saya hormati, Teman-teman sesama anak muda, Ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia Umas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandingan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "b8OMo8VfRpTqoL4OWFgkMhFWSlqge2W2Ltk3kdOtr8-Zj_yz0GgFA5sRLCbViPKqVJ7VZLez_MibUnQ1uQypKg"
+}

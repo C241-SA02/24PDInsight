@@ -20,17 +20,17 @@ def index():
     return "Homepage"
 
 # Transcribe
-@app.route('/transcribe', methods=['GET'])
+@app.route('/transcribe', methods=['POST'])
 def transcribe():
     try:
         # Request the url link that pass from the backend
-        # url = request.args.get('url')
+        url = request.args.get('url')
         
         # For Test URL from BUCKET
         # url = 'https://storage.googleapis.com/files-bucket-24pdinsight/gibran.mp3'
         
         # For Test URL from YOUTUBE
-        url = 'https://youtu.be/OdptPKaEMFQ?si=nf8e1Jyq9bBLfpL7'
+        # url = 'https://youtu.be/OdptPKaEMFQ?si=nf8e1Jyq9bBLfpL7'
         
         if not url:
             return jsonify({'error': 'No URL provided'}), 400

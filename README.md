@@ -1,7 +1,7 @@
 # 24PDInsight - Bizzagi Company Capstone Project
 
 ## Introduction
-Welcome to 24PDInsight, the capstone project developed by *Bangkit Cohort 2024 Batch 1* for the Bizzagi company. This project aims to provide insights and analysis for the capstone company project undertaken as part of the Bangkit program. 
+Welcome to **24PDInsight**, the capstone project developed by *Bangkit Cohort 2024 Batch 1* for the **Bizzagi** company. This project aims to provide insights and analysis for the capstone company project undertaken as part of the Bangkit program. 
 
 ## Features
 - [x] **Transcribe Audio to Text:** Utilize Whisper from OpenAI to transcribe audio files to text.
@@ -13,20 +13,24 @@ Welcome to 24PDInsight, the capstone project developed by *Bangkit Cohort 2024 B
 
 ## Getting Started
 To get started with 24PDInsight, follow these steps:
+
 1. Clone the repository to your local machine.
     ```bash
     git clone https://github.com/your-username/24PDInsight.git
     ```
+
 2. Create and Activate a Virtual Environment:
     ```bash
     python3.10 -m venv env 
     source env/bin/activate  
     # On Windows, use "env\Scripts\activate"
     ```
+
 3. Install the required dependencies listed in the `requirements.txt` file.
     ```bash
     pip install -r requirements.txt
     ```
+
 4. Run the Application:
     ```bash
     python app.py

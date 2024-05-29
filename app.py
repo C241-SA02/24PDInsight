@@ -38,6 +38,7 @@ def transcribe():
         # Request URL from user
         data = request.get_json()
         url = data.get('url')
+
         
         if not url:
             return jsonify({'error': 'No URL provided'}), 400

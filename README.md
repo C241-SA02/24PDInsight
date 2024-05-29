@@ -35,3 +35,9 @@ To get started with 24PDInsight, follow these steps:
     ```bash
     python app.py
     ```
+## Testing
+We have included a Thunder Client collection for testing the API endpoints. You can find the collection file `thunder-collection_24PDInsight.json` in the repository. To use this file:
+
+1. Install the Thunder Client extension in Visual Studio Code.
+2. Open Thunder Client and import the `thunder-collection_24PDInsight.json` file.
+3. Run the requests to test the different features of the application.

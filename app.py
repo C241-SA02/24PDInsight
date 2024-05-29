@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from source.transcribe import transcribe_youtube_audio, transcribe_mp3_audio
 from source.wordcloud import wordcloud
+from source.sentiment import analyze_sentiment
 import re
 
 app = Flask(__name__)
@@ -72,6 +73,23 @@ def generate_wordcloud():
 
         return wordcloud_json
     
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/sentiment', methods=['POST'])
+def transcribe_audio_and_analyze_sentiment():    
+    try:
+        data = request.get_json()
+        transcription = data.get('transcription')
+        
+        # Analyze the transcribed text
+        sentiment_analysis = analyze_sentiment(transcription)
+        
+        # Return the result
+        return jsonify({
+            "sentiment_analysis": sentiment_analysis
+        })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

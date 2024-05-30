@@ -108,12 +108,12 @@ def summarize():
             return jsonify({'error': 'No transcription provided'}), 400
         
         # Analyze the transcribed text
-        summarize_analysis = summarize(transcription)
+        summarize_analysis = summarize_text(transcription)
         
         # Return the result
         return jsonify({
             'summary': summarize_analysis
-            })
+        })
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

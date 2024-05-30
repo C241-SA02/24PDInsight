@@ -2,12 +2,12 @@ import os
 import torch
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 
-# Intialize model and tokenizer for NER
+# Initialize model and tokenizer for NER
 ner_model_name = "farizkuy/ner_fine_tuned"
 ner_tokenizer = AutoTokenizer.from_pretrained(ner_model_name)
 ner_model = AutoModelForTokenClassification.from_pretrained(ner_model_name)
 
-# Translate labels
+# Translation dictionary for labels
 label_translation = {
     'B-CRD': 'Angka', 'B-DAT': 'Tanggal', 'B-EVT': 'Peristiwa', 'B-FAC': 'Fasilitas', 'B-GPE': 'Entitas Geologi',
     'B-LAN': 'Bahasa', 'B-LAW': 'Hukum', 'B-LOC': 'Lokasi', 'B-MON': 'Uang', 'B-NOR': 'Norma',
@@ -20,27 +20,25 @@ label_translation = {
 }
 
 def ner_predict_and_translate(text, model, tokenizer, label_translation):
-    # Pre-tokenization --> dia maunya nerima data yang dah pre-tokenized
+    # Tokenize input text
     tokens = text.split()
-
-    # Tokenize
     tokenized_inputs = tokenizer(tokens, is_split_into_words=True, return_tensors="pt", truncation=True)
     outputs = model(**tokenized_inputs)
     predictions = torch.argmax(outputs.logits, dim=-1)
 
-    # Intialize kata dan label yang diprediksi
+    # Convert tokens and predicted labels to words and labels
     words = tokenizer.convert_ids_to_tokens(tokenized_inputs["input_ids"][0])
     labels = [model.config.id2label[label_id.item()] for label_id in predictions[0]]
 
-    # translated label
+    # Translate labels
     translated_labels = [label_translation[label] for label in labels]
 
-    result = [(word, label) for word, label in zip(words, translated_labels) if
-              word not in tokenizer.all_special_tokens]
-
+    # Filter out special tokens and return the result
+    result = [(word, label) for word, label in zip(words, translated_labels) if word not in tokenizer.all_special_tokens]
     return result
 
 def ner_format_result(result):
+    # Format the NER result for display
     formatted_text = ""
     for word, label in result:
         if label != 'O':
@@ -48,3 +46,23 @@ def ner_format_result(result):
         else:
             formatted_text += f"{word} "
     return formatted_text.strip()
+
+def analyze_ner(text):
+    # Analyze text for NER and format the result
+    ner_result = ner_predict_and_translate(text, ner_model, ner_tokenizer, label_translation)
+    formatted_ner_result = ner_format_result(ner_result)
+    return formatted_ner_result
+
+if __name__ == "__main__":
+    # Sample text for testing
+    sample_text = "Barack Obama was born on August 4, 1961 in Honolulu, Hawaii."
+    
+    # Expected format: [('Barack', 'Orang'), ('Obama', 'Orang'), ('was', 'O'), ('born', 'O'), ('on', 'O'), ('August', 'Tanggal'), ('4', 'Tanggal'), ('1961', 'Tanggal'), ('in', 'O'), ('Honolulu', 'Lokasi'), ('Hawaii', 'Lokasi'), ('.', 'O')]
+    
+    # Analyze the sample text
+    result = analyze_ner(sample_text)
+    
+    # Print the result
+    print("Input Text:", sample_text)
+    print("NER Analysis:", result)
+    

@@ -9,7 +9,7 @@ Welcome to **24PDInsight**, the capstone project developed by *Bangkit Cohort 20
 - [x] **Sentiment Analysis:** Analyze the sentiment of text data to determine the overall sentiment (positive, negative, or neutral).
 - [ ] **Topic Modeling:** Identify topics in text data and analyze their distribution.
 - [ ] **Named Entity Recognition (NER):** Identify and classify named entities (e.g., persons, organizations, locations) in text data.
-- [ ] **Text Summarization:** Automatically generate concise summaries of text documents.
+- [x] **Text Summarization:** Automatically generate concise summaries of text documents.
 
 ## Getting Started
 To get started with 24PDInsight, follow these steps:

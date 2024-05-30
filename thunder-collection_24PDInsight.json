@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "24PDInsight",
     "collectionId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
-    "dateExported": "2024-05-29T08:00:09.940Z",
+    "dateExported": "2024-05-30T21:20:22.720Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -98,7 +98,24 @@
                 "raw": "{\n  \"transcription\": \" Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka labor. Tapi Bapak-Ibu yang saya hormati, Teman-teman sesama anak muda, Ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia Umas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandingan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "439c8d40-4d79-4317-ace2-4bbdc942e04b",
+            "colId": "9cde7c47-62bc-44b0-9521-8a20ea4e06fa",
+            "containerId": "",
+            "name": "Get Summarize",
+            "url": "http://127.0.0.1:5000/summarize",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-05-30T11:59:07.033Z",
+            "modified": "2024-05-30T19:34:43.728Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"transcription\": \" Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka labor. Tapi Bapak-Ibu yang saya hormati, Teman-teman sesama anak muda, Ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia Umas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandingan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!\"\n}",
+                "form": []
+            }
         }
     ],
-    "ref": "b8OMo8VfRpTqoL4OWFgkMhFWSlqge2W2Ltk3kdOtr8-Zj_yz0GgFA5sRLCbViPKqVJ7VZLez_MibUnQ1uQypKg"
+    "ref": "b8OMo8VfRpTqoL4OWFgkMlGmItGBVG3ZLlP8ymmUVf_RMu2NIdqJk1mSRRM8TEes1xw-cP1_gMzmLB9Vj6NGTw"
 }

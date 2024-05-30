@@ -84,6 +84,9 @@ def analyze_sentiment():
         data = request.get_json()
         transcription = data.get('transcription')
         
+        if not transcription:
+            return jsonify({'error': 'No transcription provided'}), 400
+        
         # Analyze the transcribed text
         sentiment_analysis = analyze_sentiment(transcription)
         
@@ -100,6 +103,9 @@ def summarize():
     try:
         data = request.get_json()
         transcription = data.get('transcription')
+        
+        if not transcription:
+            return jsonify({'error': 'No transcription provided'}), 400
         
         # Analyze the transcribed text
         summarize = summarize_text(transcription)

@@ -8,9 +8,9 @@ tokenizer.eos_token = tokenizer.sep_token
 # Load the model
 model = EncoderDecoderModel.from_pretrained("PaceKW/24PDInsight-Summarization")
 
-def summarize_text(article_to_summarize):
+def summarize_text(transcription):
     # Generate summary
-    input_ids = tokenizer.encode(article_to_summarize, return_tensors='pt')
+    input_ids = tokenizer.encode(transcription, return_tensors='pt')
     summary_ids = model.generate(input_ids,
                                   min_length=20,
                                   max_length=80,

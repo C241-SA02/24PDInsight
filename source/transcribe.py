@@ -28,7 +28,7 @@ def transcribe(file_path):
         os.remove(file_path)
 
         # Return the transcription text as JSON
-        return json.dumps(transcription.text)
+        return transcription.text
 
     except Exception as e:
         raise RuntimeError(f"Error during transcription: {str(e)}")

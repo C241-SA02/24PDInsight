@@ -4,6 +4,8 @@ from source.wordcloud import wordcloud
 from source.sentiment import analyze_sentiment
 from source.summarize import summarize_text
 from source.ner import analyze_ner
+from source.topicmodel import topic_modeling
+
 import re
 
 app = Flask(__name__)
@@ -41,7 +43,6 @@ def transcribe():
         # Request URL from user
         data = request.get_json()
         url = data.get('url')
-
         
         if not url:
             return jsonify({'error': 'No URL provided'}), 400
@@ -119,6 +120,7 @@ def summarize():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# NER Analysis
 @app.route('/entity', methods=['POST'])
 def analyze_entity():
     try:
@@ -133,6 +135,28 @@ def analyze_entity():
         return jsonify({
             "text": transcription, 
             "ner_analysis": ner_result
+        })
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Topic Modeling
+@app.route('/topic_model', methods=['POST'])
+def topic_model():
+    try:
+        # Get transcription from request data
+        data = request.get_json()
+        transcription = data.get('transcription')
+
+        if not transcription:
+            return jsonify({'error': 'No transcription provided'}), 400
+        
+        # Analyze the transcribed text
+        topics = topic_modeling(transcription)
+        
+        # Return JSON response with transcription and topics
+        return jsonify({
+            "topics": topics
         })
     
     except Exception as e:

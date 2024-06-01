@@ -1,13 +1,13 @@
 # 24PDInsight - Bizzagi Company Capstone Project
 
 ## Introduction
-Welcome to **24PDInsight**, the capstone project developed by *Bangkit Cohort 2024 Batch 1* for the **Bizzagi** company. This project aims to provide insights and analysis for the capstone company project undertaken as part of the Bangkit program. 
+Welcome to **24PDInsight**, the capstone project developed by *Bangkit Cohort 2024 Batch 1* for the **Bizzagi** company. This project aims to provide insights and analysis for the capstone company project undertaken as part of the Bangkit program.
 
 ## Features
 - [x] **Transcribe Audio to Text:** Utilize Whisper from OpenAI to transcribe audio files to text.
 - [x] **Wordcloud Generation:** Calculate the frequency of words in the text data and pass it to the frontend for generating wordcloud visualizations.
 - [x] **Sentiment Analysis:** Analyze the sentiment of text data to determine the overall sentiment (positive, negative, or neutral).
-- [ ] **Topic Modeling:** Identify topics in text data and analyze their distribution.
+- [x] **Topic Modeling:** Identify topics in text data and analyze their distribution.
 - [x] **Named Entity Recognition (NER):** Identify and classify named entities (e.g., persons, organizations, locations) in text data.
 - [x] **Text Summarization:** Automatically generate concise summaries of text documents.
 
@@ -52,3 +52,5 @@ We have included a Thunder Client collection for testing the API endpoints. You 
 1. Install the Thunder Client extension in Visual Studio Code.
 2. Open Thunder Client and import the `thunder-collection_24PDInsight.json` file.
 3. Run the requests to test the different features of the application.
+
+**Note:** We developed this project using Python version 3.10.

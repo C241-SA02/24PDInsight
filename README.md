@@ -8,7 +8,7 @@ Welcome to **24PDInsight**, the capstone project developed by *Bangkit Cohort 20
 - [x] **Wordcloud Generation:** Calculate the frequency of words in the text data and pass it to the frontend for generating wordcloud visualizations.
 - [x] **Sentiment Analysis:** Analyze the sentiment of text data to determine the overall sentiment (positive, negative, or neutral).
 - [ ] **Topic Modeling:** Identify topics in text data and analyze their distribution.
-- [ ] **Named Entity Recognition (NER):** Identify and classify named entities (e.g., persons, organizations, locations) in text data.
+- [x] **Named Entity Recognition (NER):** Identify and classify named entities (e.g., persons, organizations, locations) in text data.
 - [x] **Text Summarization:** Automatically generate concise summaries of text documents.
 
 ## Getting Started

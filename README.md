@@ -31,10 +31,21 @@ To get started with 24PDInsight, follow these steps:
     pip install -r requirements.txt
     ```
 
-4. Run the Application:
+4. Set up Environment Variables:
+    - Create a `.env` file in the root directory of the project.
+    - Add the following environment variable to the `.env` file:
+        ```
+        API_KEY=your_api_key
+        ```
+      Replace `your_api_key` with your actual OpenAI API key.
+
+5. Save the `.env` file.
+
+6. Run the Application:
     ```bash
     python app.py
     ```
+
 ## Testing
 We have included a Thunder Client collection for testing the API endpoints. You can find the collection file `thunder-collection_24PDInsight.json` in the repository. To use this file:
 

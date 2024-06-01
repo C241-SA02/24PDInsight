@@ -3,7 +3,7 @@ import json
 import requests
 from openai import OpenAI
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY', 'YOUR-KEY'))
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY', 'API_KEY'))
 from pytube import YouTube
 
 
@@ -21,7 +21,7 @@ def transcribe(file_path):
         os.remove(file_path)
 
         # Return the transcription text as JSON
-        return json.dumps(transcription['text'])
+        return json.dumps(transcription.text)
 
     except Exception as e:
         raise RuntimeError(f"Error during transcription: {str(e)}")

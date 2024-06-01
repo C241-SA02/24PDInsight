@@ -1,10 +1,10 @@
 Flask==3.0.3
 pytube==15.0.0
-Requests==2.32.2
+Requests==2.32.3
 tensorflow==2.16.1
+torch==2.2.2
 transformers==4.41.1
 ffmpeg
 tf-keras
 openai
-torch
 wordcloud

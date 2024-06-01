@@ -3,6 +3,7 @@ from source.transcribe import transcribe_youtube_audio, transcribe_mp3_audio
 from source.wordcloud import wordcloud
 from source.sentiment import analyze_sentiment
 from source.summarize import summarize_text
+from source.ner import analyze_ner
 import re
 
 app = Flask(__name__)
@@ -115,6 +116,25 @@ def summarize():
             'summary': summarize_analysis
         })
 
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/entity', methods=['POST'])
+def analyze_entity():
+    try:
+        data = request.get_json()
+        transcription = data.get('transcription')
+
+        if not transcription:
+            return jsonify({'error': 'No transcription provided'}), 400
+        
+        # Analyze the transcribed text
+        ner_result = analyze_ner(transcription)
+        return jsonify({
+            "text": transcription, 
+            "ner_analysis": ner_result
+        })
+    
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

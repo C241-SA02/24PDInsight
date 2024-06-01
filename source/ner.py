@@ -55,9 +55,7 @@ def analyze_ner(text):
 
 if __name__ == "__main__":
     # Sample text for testing
-    sample_text = "Barack Obama was born on August 4, 1961 in Honolulu, Hawaii."
-    
-    # Expected format: [('Barack', 'Orang'), ('Obama', 'Orang'), ('was', 'O'), ('born', 'O'), ('on', 'O'), ('August', 'Tanggal'), ('4', 'Tanggal'), ('1961', 'Tanggal'), ('in', 'O'), ('Honolulu', 'Lokasi'), ('Hawaii', 'Lokasi'), ('.', 'O')]
+    sample_text = "Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka lebar. Tapi Bapak-Ibu yang saya hormati, teman-teman sesama anak muda, ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia emas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandengan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!"
     
     # Analyze the sample text
     result = analyze_ner(sample_text)
@@ -65,4 +63,3 @@ if __name__ == "__main__":
     # Print the result
     print("Input Text:", sample_text)
     print("NER Analysis:", result)
-    

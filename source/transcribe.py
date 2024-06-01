@@ -1,21 +1,28 @@
 import os
 import json
 import requests
-from openai import OpenAI
-
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY', 'API_KEY'))
 from pytube import YouTube
+from openai import OpenAI
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Set your OpenAI API key
+api_key = os.getenv('API_KEY')
+if api_key is None:
+    raise ValueError("OpenAI API key not found in the environment. Make sure to set it in the .env file.")
+
+client = OpenAI(api_key=api_key)
 
 def transcribe(file_path):
     try:
         # Perform transcription on the downloaded audio file using OpenAI API
         with open(file_path, "rb") as audio_data:
-            transcription = client.audio.transcriptions.create(model='whisper-1',
-            file=audio_data,
-            language='id')
+            transcription = client.audio.transcriptions.create(
+                model='whisper-1',
+                file=audio_data,
+                language='id')
 
         # Clean up the temporary file
         os.remove(file_path)

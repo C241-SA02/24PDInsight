@@ -81,17 +81,17 @@ def generate_wordcloud():
 
 # Sentiment Analysis
 @app.route('/sentiment', methods=['POST'])
-def analyze_sentiment():    
+def analyze_sentiment_analysis():
     try:
         data = request.get_json()
         transcription = data.get('transcription')
-        
+
         if not transcription:
             return jsonify({'error': 'No transcription provided'}), 400
-        
+
         # Analyze the transcribed text
         sentiment_analysis = analyze_sentiment(transcription)
-        
+
         # Return the result
         return jsonify({
             "sentiment_analysis": sentiment_analysis

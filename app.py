@@ -5,7 +5,6 @@ from source.sentiment import analyze_sentiment
 from source.summarize import summarize_text
 from source.ner import analyze_ner
 from source.topicmodel import topic_modeling
-
 import re
 
 app = Flask(__name__)
@@ -99,19 +98,20 @@ def analyze_sentiment_analysis():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 # Summarize Text
 @app.route('/summarize', methods=['POST'])
-def summarize():    
+def summarize():
     try:
         data = request.get_json()
         transcription = data.get('transcription')
-        
+
         if not transcription:
             return jsonify({'error': 'No transcription provided'}), 400
-        
+
         # Analyze the transcribed text
         summarize_analysis = summarize_text(transcription)
-        
+
         # Return the result
         return jsonify({
             'summary': summarize_analysis
@@ -119,6 +119,7 @@ def summarize():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 # NER Analysis
 @app.route('/entity', methods=['POST'])
@@ -129,16 +130,19 @@ def analyze_entity():
 
         if not transcription:
             return jsonify({'error': 'No transcription provided'}), 400
-        
+
         # Analyze the transcribed text
         ner_result = analyze_ner(transcription)
         return jsonify({
-            "text": transcription, 
             "ner_analysis": ner_result
         })
-    
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # Topic Modeling
 @app.route('/topic_model', methods=['POST'])

@@ -1,4 +1,3 @@
-import os
 import torch
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 
@@ -19,26 +18,33 @@ label_translation = {
     'I-QTY': 'Jumlah', 'I-REG': 'Agama', 'I-TIM': 'Waktu', 'I-WOA': 'Karya', 'O': 'O'
 }
 
-def ner_predict_and_translate(text, model, tokenizer, label_translation):
-    # Tokenize input text
-    tokens = text.split()
-    tokenized_inputs = tokenizer(tokens, is_split_into_words=True, return_tensors="pt", truncation=True)
-    outputs = model(**tokenized_inputs)
-    predictions = torch.argmax(outputs.logits, dim=-1)
+def split_text_into_segments(text, tokenizer, max_length=512):
+    tokens = tokenizer(text, return_tensors="pt", padding=False, truncation=False)["input_ids"][0]
+    num_tokens = len(tokens)
+    segments = []
+    for i in range(0, num_tokens, max_length):
+        segment = tokens[i:i + max_length]
+        segments.append(segment)
+    return segments
 
-    # Convert tokens and predicted labels to words and labels
-    words = tokenizer.convert_ids_to_tokens(tokenized_inputs["input_ids"][0])
-    labels = [model.config.id2label[label_id.item()] for label_id in predictions[0]]
+def ner_predict_for_segments(segments, model, tokenizer, label_translation):
+    predictions = []
+    for segment in segments:
+        inputs = {"input_ids": torch.unsqueeze(segment, 0)}
+        outputs = model(**inputs)
+        logits = outputs.logits
+        probabilities = torch.softmax(logits, dim=-1)[0]
+        predicted_labels = torch.argmax(probabilities, dim=-1)
 
-    # Translate labels
-    translated_labels = [label_translation[label] for label in labels]
+        words = tokenizer.convert_ids_to_tokens(segment)
+        labels = [model.config.id2label[label_id.item()] for label_id in predicted_labels]
 
-    # Filter out special tokens and return the result
-    result = [(word, label) for word, label in zip(words, translated_labels) if word not in tokenizer.all_special_tokens]
-    return result
+        translated_labels = [label_translation[label] for label in labels]
+        result = [(word, label) for word, label in zip(words, translated_labels) if word not in tokenizer.all_special_tokens]
+        predictions.extend(result)
+    return predictions
 
 def ner_format_result(result):
-    # Format the NER result for display
     formatted_text = ""
     for word, label in result:
         if label != 'O':
@@ -48,18 +54,20 @@ def ner_format_result(result):
     return formatted_text.strip()
 
 def analyze_ner(text):
-    # Analyze text for NER and format the result
-    ner_result = ner_predict_and_translate(text, ner_model, ner_tokenizer, label_translation)
+    segments = split_text_into_segments(text, ner_tokenizer)
+    ner_result = ner_predict_for_segments(segments, ner_model, ner_tokenizer, label_translation)
     formatted_ner_result = ner_format_result(ner_result)
     return formatted_ner_result
+
+
 
 if __name__ == "__main__":
     # Sample text for testing
     sample_text = "Kita harus bersyukur di tahun 2020 sampai 2030 nanti kita akan mendapatkan bonus demografi. Saat itulah sebagian besar penduduk kita ada pada usia produktif. Ini kesempatan kita untuk meningkatkan produktivitas nasional. Peluang untuk menuju Indonesia emas makin terbuka lebar. Tapi Bapak-Ibu yang saya hormati, teman-teman sesama anak muda, ingat, kesempatan ini hanya datang sekali. Kesempatan ini tidak akan terulang lagi. Untuk itu kita harus kerja keras, kerja fokus, berani melakukan lompatan. Saya ucapkan terima kasih kepada Pak Prabowo, yang sudah memberi saya kesempatan untuk ikut andil dalam kontestasi ini. Saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju Indonesia emas. Saya ucapkan terima kasih juga Prof. Mahfud, Guzmuhaymin. Saya sangat senang sekali bisa satu panggung dengan orang-orang hebat seperti ini. Senang sekali anak muda bisa bertukar pikiran dengan Ketua Umum Partai dan seorang Profesor. Sekali lagi terima kasih. Anak-anak muda harus saling mendukung, anak-anak muda harus saling bergandengan tangan. Saya yakin Indo Insyarmus bisa tercapai. Terima kasih. Wassalamu'alaikum warahmatullahi wabarakatuh. Selamat Natal dan Tahun Baru. Terima kasih telah menonton!"
-    
+
     # Analyze the sample text
     result = analyze_ner(sample_text)
-    
+
     # Print the result
     print("Input Text:", sample_text)
     print("NER Analysis:", result)
